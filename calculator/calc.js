@@ -1,12 +1,17 @@
 function calc(operator, firstNum, secondNum) {
+
+    let result;
+
     switch(operator) {
         case 'multy':
-            return firstNum * secondNum;
+            result = firstNum * secondNum;
         case 'add':
-            return firstNum + secondNum;
+            result = firstNum + secondNum;
         case 'sub':
-            return firstNum - secondNum;
+            result = firstNum - secondNum;
     }
+
+    return result;
 }
 
 console.log(calc('sub', 2, 3));
