@@ -16,7 +16,7 @@ const errorMessage = {
 };
 
 function addTask(task) {
-    list[task] = STATUS.toDo;
+    list[task] = STATUS.TODO;
 }
 
 function changeStatus(task, status) {
@@ -30,10 +30,10 @@ function changeStatus(task, status) {
 }
 
 function deleteTask(task) {
-    if (task in list) {
-        delete list[task];
-    } else {
+    if (!(task in list)) {
         console.log(errorMessage.WRONG_TASK);
+    } else {
+        delete list[task];
     }
 }
 
