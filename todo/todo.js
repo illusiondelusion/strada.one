@@ -1,3 +1,5 @@
+// todo on objects
+
 const STATUS = {
     'TODO': 'To Do',
     'IN_PROGRESS': 'In Progress',
@@ -86,3 +88,34 @@ changeStatus('write a post','In Progress');
 changeStatus('go to work','eee');
 deleteTask('pipich');
 showList();
+
+
+// todo on arrays
+
+const toDoList = [
+    'create a new practice task', 'go to work', 'write a post'
+]
+
+
+function addTaskk(task) {
+    toDoList.push(task);
+}
+
+function deleteTaskk(index) {
+    if (index === 0) {
+        toDoList.shift();
+    } else if (index === -1) {
+        toDoList.pop();
+    } else {
+        toDoList.splice(index,index);
+    }
+}
+
+function showListt() {
+    for (const task of toDoList) {
+    console.log(task);
+    }
+}
+
+deleteTaskk(0);
+showListt();
