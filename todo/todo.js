@@ -1,6 +1,6 @@
 // todo on objects
 
-const STATUS = {
+/*const STATUS = {
     'TODO': 'To Do',
     'IN_PROGRESS': 'In Progress',
     'DONE': 'Done'
@@ -88,34 +88,90 @@ changeStatus('write a post','In Progress');
 changeStatus('go to work','eee');
 deleteTask('pipich');
 showList();
-
+*/
 
 // todo on arrays
 
-const toDoList = [
-    'create a new practice task', 'go to work', 'write a post'
-]
+const STATUS = {
+    'TODO': 'To Do',
+    'IN_PROGRESS': 'In Progress',
+    'DONE': 'Done'
+};
 
+const PRIORITY = {
+    'LOW': 'Low',
+    'HIGH': 'High'
+};
 
-function addTaskk(task) {
-    toDoList.push(task);
+const errorMessage = {
+    'WRONG_STATUS': 'No such status!',
+    'WRONG_TASK': 'No such task!',
+    'WRONG_PRIORITY': 'No such priority!'
+};
+
+const tasks = [
+    {
+        name: 'create a new practice task',
+        status: STATUS.IN_PROGRESS,
+        priority: PRIORITY.HIGH
+    },
+    {
+        name: 'go to work',
+        status: STATUS.DONE,
+        priority: PRIORITY.HIGH
+    },
+    {
+        name: 'write a post',
+        status: STATUS.TODO,
+        priority: PRIORITY.LOW
+    },
+];
+
+function addTask(name, priority) {
+    if (priority === PRIORITY.HIGH) {
+        tasks.unshift({name, status: STATUS.TODO, priority});
+    } else if (priority === PRIORITY.LOW) {
+        tasks.push({name, status: STATUS.TODO, priority});
+    } else {
+        console.log(errorMessage.WRONG_PRIORITY);
+    }
+
 }
 
-function deleteTaskk(index) {
+function changeStatus(name, status) {
+    const task = tasks.find(task => task.name === name);
+    if (!task) {
+        console.log(errorMessage.WRONG_TASK);
+        return;
+    }
+
+    if (!(status in STATUS)) {
+        console.log(errorMessage.WRONG_STATUS);
+        return;
+    }
+
+    task[status] = status;
+}
+
+function deleteTask(index) {
     if (index === 0) {
-        toDoList.shift();
+        tasks.shift();
     } else if (index === -1) {
-        toDoList.pop();
+        tasks.pop();
     } else {
-        toDoList.splice(index,index);
+        tasks.splice(index,index);
     }
 }
 
-function showListt() {
-    for (const task of toDoList) {
+function showList() {
+    for (const task of tasks) {
     console.log(task);
     }
 }
 
-deleteTaskk(0);
-showListt();
+deleteTask(0);
+addTask('have lunch', PRIORITY.HIGH);
+changeStatus ('go to work', STATUS.DONE);
+changeStatus ('kiki', STATUS.DONE);
+changeStatus ('write a post', STATUS.PIPCH);
+showList();
