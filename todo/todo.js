@@ -117,7 +117,7 @@ const tasks = [
     },
     {
         name: 'go to work',
-        status: STATUS.DONE,
+        status: STATUS.IN_PROGRESS,
         priority: PRIORITY.HIGH
     },
     {
@@ -145,12 +145,12 @@ function changeStatus(name, status) {
         return;
     }
 
-    if (!(status in STATUS)) {
+    if (status !== STATUS.TODO && status !== STATUS.IN_PROGRESS && status !== STATUS.DONE) {
         console.log(ERROR_MESSAGE.WRONG_STATUS);
         return;
     }
 
-    task[status] = status;
+    task.status = status;
 }
 
 function deleteTask(index) {
