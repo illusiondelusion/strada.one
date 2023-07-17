@@ -103,7 +103,7 @@ const PRIORITY = {
     'HIGH': 'High'
 };
 
-const errorMessage = {
+const ERROR_MESSAGE = {
     'WRONG_STATUS': 'No such status!',
     'WRONG_TASK': 'No such task!',
     'WRONG_PRIORITY': 'No such priority!'
@@ -133,7 +133,7 @@ function addTask(name, priority) {
     } else if (priority === PRIORITY.LOW) {
         tasks.push({name, status: STATUS.TODO, priority});
     } else {
-        console.log(errorMessage.WRONG_PRIORITY);
+        console.log(ERROR_MESSAGE.WRONG_PRIORITY);
     }
 
 }
@@ -141,12 +141,12 @@ function addTask(name, priority) {
 function changeStatus(name, status) {
     const task = tasks.find(task => task.name === name);
     if (!task) {
-        console.log(errorMessage.WRONG_TASK);
+        console.log(ERROR_MESSAGE.WRONG_TASK);
         return;
     }
 
     if (!(status in STATUS)) {
-        console.log(errorMessage.WRONG_STATUS);
+        console.log(ERROR_MESSAGE.WRONG_STATUS);
         return;
     }
 
