@@ -14,4 +14,6 @@ function calc(operator, firstNum, secondNum) {
     return result;
 }
 
-console.log(calc('sub', 2, 3));
+const calcBtn = document.querySelector('.calc__btn');
+
+calcBtn.addEventListener('click', () => {console.log('Heeey!');});
