@@ -1,19 +1,40 @@
+const UI_ELEMENTS = {
+    operator: document.querySelector('.calc__operator'),
+    firstNum: document.querySelector('.first-num'),
+    secondNum: document.querySelector('.second-num'),
+    calcBtn: document.querySelector('.calc__btn'),
+    result: document.querySelector('.calc__result'),
+}
+
+const OPERATIONS = {
+    ADD: '+',
+    MULTY: '*',
+    SUB: '-',
+    DIV: '/',
+}
+
 function calc(operator, firstNum, secondNum) {
 
-    let result;
-
     switch(operator) {
-        case 'multy':
-            result = firstNum * secondNum;
-        case 'add':
-            result = firstNum + secondNum;
-        case 'sub':
-            result = firstNum - secondNum;
+        case OPERATIONS.MULTY:
+            return firstNum * secondNum;
+        case OPERATIONS.ADD:
+            return firstNum + secondNum;
+        case OPERATIONS.SUB:
+            return firstNum - secondNum;
+        case OPERATIONS.DIV:
+            return firstNum / secondNum;
+        default: break;
     }
+}
 
+function getCalcResult() {
+    const num1 = Number(UI_ELEMENTS.firstNum.value);
+    const num2 = Number(UI_ELEMENTS.secondNum.value);
+    let result = calc(UI_ELEMENTS.operator.value, num1, num2);
     return result;
 }
 
-const calcBtn = document.querySelector('.calc__btn');
-
-calcBtn.addEventListener('click', () => {console.log('Heeey!');});
+UI_ELEMENTS.calcBtn.addEventListener('click', function run() {
+    UI_ELEMENTS.result.textContent = getCalcResult();
+});
