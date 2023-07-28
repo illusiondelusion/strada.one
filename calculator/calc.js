@@ -6,6 +6,11 @@ const UI_ELEMENTS = {
     result: document.querySelector('.calc__result'),
 }
 
+const ERROR_MESSAGES = {
+    WRONG_DIV: 'You can\'t divide by zero!',
+    WRONG_INPUT: 'I calculate only numbers!',
+}
+
 const OPERATIONS = {
     ADD: '+',
     MULTY: '*',
@@ -32,7 +37,16 @@ function getCalcResult() {
     const num1 = Number(UI_ELEMENTS.firstNum.value);
     const num2 = Number(UI_ELEMENTS.secondNum.value);
     let result = calc(UI_ELEMENTS.operator.value, num1, num2);
-    return result;
+
+    if (num2 === 0 && UI_ELEMENTS.operator.value === '/') {
+        return ERROR_MESSAGES.WRONG_DIV;
+    } else if (num2 === 0 && UI_ELEMENTS.operator.value === '*') {
+        return 1;
+    } else if (isNaN(num1) || isNaN(num2)) {
+        return ERROR_MESSAGES.WRONG_INPUT;
+    } else {
+        return result.toFixed(2);
+    }
 }
 
 UI_ELEMENTS.calcBtn.addEventListener('click', function run() {
